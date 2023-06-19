@@ -1,0 +1,112 @@
+def nights_stayed(): # Function for checking the user input for the number of nights stayed
+    num_nights = int
+    while num_nights:
+        try:
+            num_nights = int(input("How many days would you like to stay for?: "))
+            if num_nights > 0:
+                return num_nights
+            elif num_nights == 0:
+                print("You entered 0 days, please try again: ")
+            elif num_nights < 0: # Check to make sure the user does not enter a negative number
+                print("You can not stay a negative amount of days! Please enter a valid value.")
+        except ValueError:
+            print("You did not enter a valid value, please try again")
+
+def rental(): # Function checking that the user input is valid for their car rental
+    rental_days = int
+    while rental_days:
+        try:
+            rental_days = int(input("How many days would you like to rent a car for?: "))
+            if rental_days > num_nights: # Check to make sure the user does not rent a car for longer than they are staying
+                print("Oops! You have asked to rent a car for more days then your are staying!")
+            elif rental_days <= num_nights and rental_days >= 0:
+                return rental_days
+            elif rental_days < 0: # Check to make sure the user does not event a negative amount of days
+                print("You can not a car for a negative amount of days! Please enter a valid value.")
+        except ValueError:
+            print("You did not enter a valid value, please try again")
+
+def destinations(): # Function containing possible destinations
+    print("Please choose from the following destinations:")
+    print("Amsterdam")
+    print("Kyoto")
+    print("London")
+    print("New York")
+
+def hotel_cost(num_nights): # Function containing total for hotel stay
+    cost = rate_per_night * num_nights
+    return cost
+
+def plane_cost(city_flight):
+    return city_flight
+
+def car_rental(rental_cost): # Function contating total car rental cost
+    rental_cost = rental_rate * rental_days
+    return  rental_cost
+
+def holiday_cost(hotel_cost, plane_cost, rental_cost): # Function contaning total cost of the holiday
+    total = hotel_cost + plane_cost + rental_cost
+    return total
+
+def details(): # Function containing all information related to users holiday input
+    print(f"Your Hotel Cost: £{hotel_cost(num_nights)}")
+    print(f"Your Car Rental Cost: £{car_rental(rental_days)}")
+    print(f"Your Flights Cost: £{plane_cost(city_flight)}") 
+    print(f"The total cost of your Holiday is: £{holiday_cost(hotel_cost(num_nights), car_rental(rental_days), plane_cost(city_flight))}")
+
+countries = { # Contains all possible locations
+    1: "amsterdam",
+    2: "kyoto",
+    3: "london",
+    4: "new york"
+}
+
+price_per_night = { # Includes the different hotel costs per destination
+    "amsterdam": 120,
+    "kyoto": 65,
+    "london": 95,
+    "new york" : 100
+}
+
+flight = { # Includes the different flight costs per destination
+    "amsterdam": 85,
+    "kyoto": 700,
+    "london": 70,
+    "new york" : 400
+}
+
+price_rental = { # Includes the different car rental prices per day per destination
+    "amsterdam": 30,
+    "kyoto": 45,
+    "london": 65,
+    "new york" : 70
+}
+
+destination = ""
+
+while destination != "q": # Loop to check that the user inputs a valid destination
+    destinations()
+    destination = input("Please choose which city you would like to visit or enter 'q' to quit: ").lower()
+    if destination in countries.values():
+        rate_per_night = int(price_per_night.get(destination))
+        # Checks the dictionary to find the price per night
+
+        city_flight = int(flight.get(destination))
+        # Check the dictionary to find the flight cost
+
+        rental_rate = int(price_rental.get(destination))
+        # Check the dictionary to find the cost for the price rental
+
+        num_nights = nights_stayed() 
+        # Takes the nights stayed and stores it as a public variable
+        # This allows the function hotel_cost() to access the relevent data
+
+        rental_days = rental() 
+        # Takes the rental and stores it as a public variable
+        # This allows the function rental_cost() to access the relevent data
+
+        details()
+    elif destination == "q":
+        print("You have quit the program")
+    else:
+        print("You did not enter a valid location.")
