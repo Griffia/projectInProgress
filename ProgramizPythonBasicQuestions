@@ -1,0 +1,149 @@
+# Finding the Majority Element in a list
+
+# define a function that returns the majority element
+def find_majority_element(num_list):
+
+    # iterate through each number in the list
+    for num in num_list:
+        
+        # check the number of occurrence of each element
+        count = num_list.count(num)
+        
+        # if the number of occurrences is greater than
+        # n // 2, where n is the length of the list
+        # len(num_list) returns the length of the list
+        n = len(num_list)
+        if count > n // 2:
+            return num
+
+
+# given list with majority element
+numbers = [1, 7, 8, 7, 7, 7]
+
+# call the method with list as an argument
+result = find_majority_element(numbers)
+print(result)
+
+######################################################################################################################
+
+# From the given list of numbers, find the sum of the largest and the smallest element.
+
+# Solution 1
+
+numbers = [5, 6, 3, 8, 9]
+
+def calculate_sum1(num_list):
+    smallest = max(num_list) 
+    largest = min(num_list)
+
+    total = smallest + largest
+    print(total)
+
+calculate_sum1(numbers)
+
+max(numbers)
+
+# Solution 2
+number = [5, 6, 3, 8, 9]
+
+def calculate_sum2(num_list):
+    num_list.sort()
+    result = num_list[-1] + num_list[0]
+    print(result)
+
+calculate_sum2(number)
+
+######################################################################################################################
+
+# Find the sum of all the elements of a list in Python.
+numbers = [5, 6, 7, 8, 23, 51]
+
+# Solution 1
+def sum_of_elements1(numbers):
+    total = sum(numbers)
+    print(total)
+
+sum_of_elements1(numbers)
+
+# Solution 2
+def sum_of_elements2(numbers):
+    total = 0
+    for number in numbers:
+        total += number
+    print(total)
+
+sum_of_elements2(numbers)
+
+######################################################################################################################
+
+# Write a Python program to insert an element at the end of the list of size n.
+
+numbers = [5, 2, 13, 72, 4]
+
+# Solution 1
+numbers.append(9)
+print(numbers)
+
+# Solution 2
+def adding_element(num_list):
+    num_list.append(9)
+    print(num_list)
+
+adding_element(numbers)
+
+######################################################################################################################
+
+# Write a Python program to create a new list by merging two existing lists
+
+fruits = ['Apple', 'Banana', 'Mango']
+vegetables = ['Potato', 'Brinjal', 'Cauliflower']
+
+new_list = fruits + vegetables
+print(new_list)
+
+######################################################################################################################
+
+# Write a Python program to reverse a list of size n and print it.
+
+# Solution 1
+def reverse_list(num_list):
+    new_lst = list()
+    for i in range(1, len(num_list) + 1):
+        new_lst.append(num_list[-i])
+    print(new_lst)
+
+numbers = [5, 8, 4, 7, 1, 23, 6]
+
+reverse_list(numbers)
+
+# Solution 2
+reversed_list = numbers[ : :-1]
+
+print(reverse_list)
+
+######################################################################################################################
+
+# Write a Python program to check whether or not a string is a palindrome.
+# Solution 1
+string = "hannah"
+
+def palindrome1(text):
+    reverse_text = text[ : : -1]
+    if text == reverse_text:
+        print('String is Palindrome')
+    else:
+        print('String is not Palindrome')
+
+palindrome1(string)
+
+def palindrome(text):
+    reverse_text = str()
+    for i in range(1, len(text) + 1):
+        reverse_text += text[-i]
+    
+    if text == reverse_text:
+        print('String is Palindrome')
+    else:
+        print('String is not a Palindrome')
+
+palindrome(string)
